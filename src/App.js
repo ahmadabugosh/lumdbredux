@@ -6,12 +6,20 @@ import {
   Switch,
   Link,
 } from 'react-router-dom';
+
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import logo from './logo.svg';
 import './App.css';
 
 import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
+
+import rootReducer from './rootReducer';
+
+const store =createStore(rootReducer);
 const App = () => (
+  <Provider store={store}>
   <Router>
     <div className="App">
       <header className="App-header">
@@ -25,6 +33,7 @@ const App = () => (
       </Switch>
     </div>
   </Router>
+  </Provider>
 );
 
 export default App;
