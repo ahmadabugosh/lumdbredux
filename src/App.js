@@ -8,8 +8,9 @@ import {
 } from 'react-router-dom';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import logger from 'redux-logger';
 import logo from './logo.svg';
 import './App.css';
 
@@ -19,9 +20,12 @@ import Toggle from './Toggle';
 
 import rootReducer from './rootReducer';
 
+const middleware=[logger];
+
+
 const store =createStore(rootReducer,
   {},
-  composeWithDevTools(),);
+  composeWithDevTools(applyMiddleware( ...middleware)),);
 const App = () => (
   <Provider store={store}>
   <Router>
