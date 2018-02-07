@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {toggleMessage} from './actions';
+import {toggleMessage, getMovies} from './actions';
 import {bindActionCreators} from 'redux';
 
-const Toggle =({messageVisibility,toggleMessage}) => (
+const Toggle =({messageVisibility,toggleMessage, getMovies}) => (
 <div>
 			{messageVisibility &&
 				<p>You are seeing this if it worked</p>
 			}
 <button onClick={ toggleMessage}>Toggle Me</button>
+
+<button onClick={ getMovies}>Load Movies</button>
 
 </div>
 
@@ -21,6 +23,6 @@ messageVisibility:state.message.messageVisibility
 
 });
 
-const mapDispatchToProps =(dispatch) => bindActionCreators({toggleMessage},dispatch);
+const mapDispatchToProps =(dispatch) => bindActionCreators({toggleMessage, getMovies},dispatch);
 
 export default connect(mapStateToProps,mapDispatchToProps)(Toggle);
